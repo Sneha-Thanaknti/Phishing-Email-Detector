@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing Email Detector</title>
+
+    <style>
+        body{
+            background:#0a192f;
+            color:white;
+            font-family:Arial, sans-serif;
+            text-align:center;
+            padding:40px;
+        }
+
+        h1{
+            color:#00ff88;
+        }
+
+        textarea{
+            width:70%;
+            height:220px;
+            border-radius:10px;
+            padding:15px;
+            font-size:16px;
+        }
+
+        button{
+            background:#00ff88;
+            color:black;
+            border:none;
+            padding:12px 25px;
+            font-size:18px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        .result{
+            margin-top:30px;
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .phishing{
+            color:red;
+        }
+
+        .safe{
+            color:#00ff88;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>🛡️ Phishing Email Detector</h1>
+
+<form method="POST">
+
+<textarea
+name="email"
+placeholder="Paste Email Content Here..."
+></textarea>
+
+<br><br>
+
+<button type="submit">
+Check Email
+</button>
+
+</form>
+
+{% if prediction %}
+
+<div class="result">
+
+Prediction:
+
+{% if prediction == "phishing" %}
+
+<span class="phishing">
+🚨 PHISHING EMAIL
+</span>
+
+{% else %}
+
+<span class="safe">
+✅ SAFE EMAIL
+</span>
+
+{% endif %}
+
+<br><br>
+
+<p style="font-size:22px;">
+Confidence: {{ confidence }}%
+</p>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>
